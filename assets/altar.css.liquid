@@ -7,7 +7,6 @@ global
 body {
 
   font: 100 10px 'Proxima Nova Condensed', sans-serif;
-  -webkit-text-size-adjust: none;
   letter-spacing: 1px;
   background: #efefef;
   text-align: center;
@@ -37,7 +36,7 @@ collection page
   position: relative;
   overflow: hidden;
   background: #000;
-  width: 100%;
+  width: 100vw;
 
 }
 
@@ -59,9 +58,9 @@ product form
 inquire, price, purchse
 */
 
-.product-description-purchase,
-.product-description-inquire,
-.product-description-price {
+.product-drawer-purchase,
+.product-drawer-inquire,
+.product-drawer-price {
 
   font: 100 15px/1.5em "Proxima Nova Condensed", "Avenir Next Condensed", sans-serif;
   text-transform: uppercase;
@@ -76,8 +75,13 @@ inquire, price, purchse
 product description
 */
 
+.product input[type="checkbox"] {
 
-.product-description {
+  display: none;
+
+}
+
+.product-drawer {
 
   font: 300 15px/22px 'Proxima Nova Condensed', 'Avenir Next Condensed', sans-serif;
   font-variant: normal;
@@ -88,7 +92,7 @@ product description
 
 }
 
-.product-description h2 {
+.product-drawer h2 {
 
   font: 100 23px/1.5 'AW Conqueror Didot', 'Didot', serif;
   text-transform: uppercase;
@@ -98,7 +102,7 @@ product description
 
 }
 
-.product-description p {
+.product-drawer p {
 
   margin: 3% 6%;
 
@@ -159,49 +163,49 @@ product images
 
 .product .product-radio:nth-of-type( 2 ):checked ~ .product-images {
 
-  transform: translateX( -100vmin );
+  transform: translateX( -100vw );
 
 }
 
 .product .product-radio:nth-of-type( 3 ):checked ~ .product-images {
 
-  transform: translateX( -200vmin );
+  transform: translateX( -200vw );
 
 }
 
 .product .product-radio:nth-of-type( 4 ):checked ~ .product-images {
 
-  transform: translateX( -300vmin );
+  transform: translateX( -300vw );
 
 }
 
 .product .product-radio:nth-of-type( 5 ):checked ~ .product-images {
 
-  transform: translateX( -400vmin );
+  transform: translateX( -400vw );
 
 }
 
 .product .product-radio:nth-of-type( 6 ):checked ~ .product-images {
 
-  transform: translateX( -500vmin );
+  transform: translateX( -500vw );
 
 }
 
 .product .product-radio:nth-of-type( 7 ):checked ~ .product-images {
 
-  transform: translateX( -600vmin );
+  transform: translateX( -600vw );
 
 }
 
 .product .product-radio:nth-of-type( 8 ):checked ~ .product-images {
 
-  transform: translateX( -700vmin );
+  transform: translateX( -700vw );
 
 }
 
 .product .product-radio:nth-of-type( 9 ):checked ~ .product-images {
 
-  transform: translateX( -800vmin );
+  transform: translateX( -800vw );
 
 }
 
@@ -214,15 +218,11 @@ product images
 
 .product-images img {
 
-  width: 100vmin;
+  width: 100vw;
 
 }
 
-/*
-image navigation
-*/
-
-/* setup */
+/* image dot navigation */
 
 .product input[type="radio"] {
 
@@ -299,7 +299,7 @@ image navigation
 
   background: rgba( 0 , 0 , 0 , 0.5 );
   position: absolute;
-  height: 100vmin;
+  height: 100vw;
   font-size: 0;
   width: 64px;
   padding: 0;
@@ -440,8 +440,27 @@ image location
 
 }
 
-.product-checkbox:checked + .product-description {
+.product-checkbox:checked + .product-drawer {
 
   display: block;
+
+}
+
+
+/*
+
+media queries
+
+*/
+
+/* collection page - images half screen */
+
+@media (min-width: 600px) {
+
+  .product-images img {
+
+    width: 50vw;
+
+  }
 
 }

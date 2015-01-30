@@ -22,134 +22,157 @@
 
   {% endfor %}
 
-<label for="{{ product.handle }}-description-checkbox" class="product-images">
+  <label for="{{ product.handle }}-description-checkbox" class="product-images">
 
-{% for image in product.images %}
+    {% for image in product.images %}
 
-<img src="{{ image.src | product_img_url: 'original' }}">
+    <img src="{{ image.src | product_img_url: 'original' }}">
 
-{% endfor %}
+    {% endfor %}
 
-</label>
+  </label>
 
-<div class="product-images-navigation">
+  <div class="product-images-navigation">
 
-{% for image in product.images %}
+    {% for image in product.images %}
 
-<label for="{{ product.handle }}-image-{{ forloop.index }}" class="product-radio">Image {{ forloop.index }}</label>
+    <label for="{{ product.handle }}-image-{{ forloop.index }}" class="product-radio">Image {{ forloop.index }}</label>
 
-{% endfor %}
+    {% endfor %}
+
+  </div>
+
+  <div class="product-images-location">
+
+    {% for image in product.images %}
+
+    <label for="{{ product.handle }}-image-{{ forloop.index }}" class="product-radio">Image {{ forloop.index }}</label>
+
+    {% endfor %}
+
+  </div>
+
+  <input type="checkbox" class="product-checkbox" id="{{ product.handle }}-description-checkbox">
+
+  <div class="product-drawer">
+
+    <h2>
+
+      {{ product.title }}
+
+    </h2>
+
+    <div class="product-form">
+
+    <div class="product-drawer-price">
+
+    {{ product.price | money_with_currency }}
+
+    </div>
+
+      <div class="product-drawer-purchase">
+
+        <form action="/cart/add" method="post" enctype="multipart/form-data" id="AddToCartForm">
+
+          <select name="id" id="productSelect" class="product-single__variants">
+
+            {% for variant in product.variants %}
+
+            {% if variant.available %}
+
+            <option {% if variant == product.selected_or_first_available_variant %} selected="selected" {% endif %} value="{{ variant.id }}">
+
+              {{ variant.title }} - {{ variant.price | money_with_currency }}
+
+            </option>
+
+            {% else %}
+
+            <option disabled="disabled">
+
+              {{ variant.title }} - {{ 'products.product.sold_out' | t }}
+
+            </option>
+
+            {% endif %}
+
+            {% endfor %}
+
+          </select>
+
+          <span id="ProductPrice" class="h2{% if product.compare_at_price > product.price %} on-sale{% endif %}" itemprop="price">
+
+            {{ product.price | money }}
+
+          </span>
+
+          <button type="submit" name="add" id="AddToCart">
+
+            <span>Purchase</span>
+
+          </button>
+
+        </form>
+
+      </div>
+
+      <div class="product-drawer-inquire">
+
+        <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;%73%61%72%61%40%61%6C%74%61%72%6A%65%77%65%6C%72%79%2E%63%6F%6D?subject=Inquiry &mdash; {{ collection.title }} {{ product.title }}">
+
+          Inquire
+
+        </a>
+
+      </div>
+
+    </div> <!-- end of product form wrapper -->
+
+    <p>
+
+    {{ product.description }}
+
+    </p>
+
+  </div>
+  <!-- end of product description wrapper -->
 
 </div>
-
-<div class="product-images-location">
-
-{% for image in product.images %}
-
-<label for="{{ product.handle }}-image-{{ forloop.index }}" class="product-radio">Image {{ forloop.index }}</label>
-
-{% endfor %}
-
-</div>
-
-<input type="checkbox" class="product-checkbox" id="{{ product.handle }}-description-checkbox">
-
-<div class="product-description">
-
-<h2>
-
-{{ product.title }}
-
-</h2>
-
-<div class="product-form">
-
-<div class="product-description-price">
-
-{{ product.price | money_with_currency }}
-
-</div>
-
-<div class="product-description-purchase">
-
-<form action="/cart/add" method="post" enctype="multipart/form-data" id="AddToCartForm">
-
-<select name="id" id="productSelect" class="product-single__variants">
-{% for variant in product.variants %}
-{% if variant.available %}
-<option {% if variant == product.selected_or_first_available_variant %} selected="selected" {% endif %} value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money_with_currency }}</option>
-
-{% else %}
-<option disabled="disabled">
-{{ variant.title }} - {{ 'products.product.sold_out' | t }}
-</option>
-{% endif %}
-{% endfor %}
-</select>
-
-<span id="ProductPrice" class="h2{% if product.compare_at_price > product.price %} on-sale{% endif %}" itemprop="price">
-{{ product.price | money }}
-</span>
-
-<button type="submit" name="add" id="AddToCart">
-<span>Purchase</span>
-</button>
-</form>
-
-</div>
-
-<div class="product-description-inquire">
-
-<a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;%73%61%72%61%40%61%6C%74%61%72%6A%65%77%65%6C%72%79%2E%63%6F%6D?subject=Inquiry &mdash; {{ collection.title }} {{ product.title }}">
-
-Inquire
-
-</a>
-
-</div>
-
-</div>
-
-<p>
-
-{{ product.description }}
-
-</p>
-
-</div>
-
-</div>
+<!-- end of main product wrapper -->
 
 {% endfor %}
 
 <div class="designer-bio">
 
-{{ collection.description }}
-
-</div>
+  {{ collection.description }}
 
 </div>
 
 <div class="collection-grid">
 
-{% for product in collection.products %}
+  {% for product in collection.products %}
 
-<a href="#{{ product.handle }}">
+  <a href="#{{ product.handle }}">
 
-<img src="{{ product.featured_image | img_url: 'grande' }}">
+    <img src="{{ product.featured_image | img_url: 'grande' }}">
 
-</a>
+  </a>
 
-{% endfor %}
+  {% endfor %}
 
 </div>
 
+
+
+
+
+
 <script>
 
-$( '.product-images' ).click( function() {
+  $( '.product-images' ).click( function() {
 
-$( 'body' ).animate({ scrollTop : $( this ).parent()[ 0 ].offsetTop + $( this )[ 0 ].offsetHeight } , 2000 );
+  $( 'body' ).animate({ scrollTop : $( this ).parent()[ 0 ].offsetTop + $( this )[ 0 ].offsetHeight } , 2000 );
 
-});
+  });
 
 </script>
