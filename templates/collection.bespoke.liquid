@@ -1,0 +1,177 @@
+
+
+{% comment %}
+  Use .grid--rev so that the collection tags appear below the products on mobile
+{% endcomment %}
+<div class="grid--rev">
+  <div class="grid__item large--three-quarters">
+
+    <div class="grid-uniform">
+
+      {% for product in collection.products %}
+
+        {% include 'product-list-item' %}
+
+      {% else %}
+
+        <div class="grid__item">
+          <p>{{ 'collections.general.no_matches' | t }}</p>
+        </div>
+
+      {% endfor %}
+
+    </div>
+
+  </div>
+
+</div>
+
+<h1>
+
+  <a href="{{ collection.url }}">{{ collection.title }}</a>
+
+</h1>
+
+<img class="temporary-illustration-header" src="{{ collection | img_url: 'grande' }}">
+
+{% for product in collection.products %}
+
+<div class="temporary-product" id="{{ product.handle }}">
+
+  <div>
+
+    {{ product.title }}
+
+  </div>
+
+  {% for image in product.images %}
+
+  {% if forloop.first == true %}
+
+  <input type="radio" name="{{ product.handle }}" id="{{ product.handle }}-image-{{ forloop.index }}" class="temporary-product-radio" checked>
+
+  {% else %}
+
+  <input type="radio" name="{{ product.handle }}" id="{{ product.handle }}-image-{{ forloop.index }}" class="temporary-product-radio">
+
+  {% endif %}
+
+  {% endfor %}
+
+  <label for="{{ product.handle }}-description-checkbox" class="temporary-product-images">
+
+    {% for image in product.images %}
+
+    <img src="{{ image.src | product_img_url: 'original' }}">
+
+    {% endfor %}
+
+  </label>
+
+  <div class="temporary-product-images-navigation">
+
+    {% for image in product.images %}
+
+    <label for="{{ product.handle }}-image-{{ forloop.index }}" class="temporary-product-radio">Image {{ forloop.index }}</label>
+
+    {% endfor %}
+
+  </div>
+
+  <div class="temporary-product-images-location">
+
+    {% for image in product.images %}
+
+    <label for="{{ product.handle }}-image-{{ forloop.index }}" class="temporary-product-radio">Image {{ forloop.index }}</label>
+
+    {% endfor %}
+
+  </div>
+
+  <input type="checkbox" class="temporary-product-checkbox" id="{{ product.handle }}-description-checkbox">
+
+  <div class="temporary-product-description">
+
+    <div class="temporary-product-description-title">
+
+      {{ product.title }}
+
+    </div>
+
+    <div class="product-form">
+
+      <div class="product-description-price">
+
+        {{ product.price | money_with_currency }}
+
+      </div>
+
+      <div class="product-description-purchase">
+
+        <form action="/cart/add" method="post">
+
+          <input type="hidden" name="id" value="{{ product.variants.first.id }}">
+
+          <input type="hidden" name="return_to" value="/collections/{{ collection.handle }}" />
+
+          <input type="submit" name="add" value="Purchase">
+
+        </form>
+
+      </div>
+
+      <div class="product-description-inquire">
+
+        <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;%73%61%72%61%40%61%6C%74%61%72%6A%65%77%65%6C%72%79%2E%63%6F%6D?subject=Inquiry &mdash; {{ collection.title }} {{ product.title }}">
+
+          Inquire
+
+        </a>
+
+      </div>
+
+    </div>
+
+    <div class="product-description-details">
+
+      {{ product.description }}
+
+    </div>
+
+  </div>
+
+ </div>
+
+{% endfor %}
+
+  <div class="designer-bio">
+
+  {{ collection.description }}
+
+</div>
+
+</div>
+
+<div class="collection-grid">
+
+{% for product in collection.products %}
+
+  <a href="#{{ product.handle }}">
+
+    <img src="{{ product.featured_image | img_url: 'grande' }}">
+
+  </a>
+
+{% endfor %}
+
+</div>
+
+<script>
+
+      $( '.temporary-product-images' ).click( function() {
+
+        $( 'body' ).animate({ scrollTop : $( this ).parent()[ 0 ].offsetTop + $( this )[ 0 ].offsetHeight } , 2000 );
+
+      });
+
+</script>
