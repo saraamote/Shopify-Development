@@ -56,34 +56,61 @@
 {% endcomment %}
 <body id="{{ page_title | handle }}" class="{% if customer %}customer-logged-in {% endif %}template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}" >
 
-  <header class="site-header" role="banner">
-    <div class="wrapper">
+  <header class="bespoke-top-navigation">
 
-      <div class="grid--full">
-        <div class="grid__item large--one-half">
-          {% comment %}
-            Use the uploaded logo from theme settings if enabled.
-            Site name gets precedence with H1 tag on homepage, div on other pages.
-          {% endcomment %}
-          {% if template == 'index' %}
-            <h1 class="site-header__logo large--left" itemscope itemtype="http://schema.org/Organization">
-          {% else %}
-            <div class="h1 site-header__logo large--left" itemscope itemtype="http://schema.org/Organization">
-          {% endif %}
-            {% if settings.logo_use_image %}
-              <a href="/" itemprop="url">
-                <img src="{{ 'logo.png' | asset_url }}" alt="{{ shop.name }}" itemprop="logo">
-              </a>
-            {% else %}
-              <a href="/" itemprop="url">{{ shop.name }}</a>
-            {% endif %}
-          {% if template == 'index' %}
-            </h1>
-          {% else %}
-            </div>
-          {% endif %}
-        </div>
-        <div class="grid__item large--one-half text-center large--text-right">
+      <ul>
+
+      {% for link in linklists.left.links %}
+
+      <li>
+
+        <a href="{{ link.url }}" class="site-nav__link">{{ link.title }}</a>
+
+      </li>
+
+      {% endfor %}
+
+    </ul>
+
+    <h1 itemscope itemtype="http://schema.org/Organization">
+
+      {% if settings.logo_use_image %}
+
+      <a href="/" itemprop="url">
+
+        <img src="{{ 'logo.png' | asset_url }}" alt="{{ shop.name }}" itemprop="logo">
+
+      </a>
+
+      {% else %}
+
+      <a href="/" itemprop="url">
+
+        {{ shop.name }}
+
+      </a>
+
+      {% endif %}
+
+    </h1>
+
+    <ul>
+
+      {% for link in linklists.right.links %}
+
+      <li>
+
+        <a href="{{ link.url }}" class="site-nav__link">{{ link.title }}</a>
+
+      </li>
+
+      {% endfor %}
+
+    </ul>
+
+
+
+        <div class="cart">
           {% comment %}
             Show number of items in the cart and total cost in the /cart link
 
@@ -94,13 +121,9 @@
               - Documentation:  http://shopify.com/timber#ajax-cart
           {% endcomment %}
           <a href="/cart" id="CartToggle">
-            <span class="icon-fallback-text">
-              <span class="icon icon-cart" aria-hidden="true"></span>
-            </span>
-            {{ 'layout.cart.title' | t }}
-            (<span id="CartCount">{{ cart.item_count }}</span>
-            {{ 'layout.cart.items_count' | t: count: cart.item_count }}
-            <span id="CartCost">{{ cart.total_price | money }}</span>)
+
+            (<span id="CartCount">{{ cart.item_count }}</span>)
+
           </a>
 
           {% comment %}
@@ -125,25 +148,8 @@
           </p>
           {% endif %}
         </div>
-      </div>
 
-    </div>
   </header>
-
-  <nav class="nav-bar" role="navigation">
-    <div class="wrapper">
-      <div class="grid">
-        <div class="grid__item large--two-thirds">
-          {% include 'site-nav' %}
-        </div>
-        <div class="grid__item large--one-third">
-          <div class="nav-search">
-            {% include 'search-bar' %}
-          </div>
-        </div>
-      </div>
-    </div>
-  </nav>
 
   <main class="wrapper main-content" role="main">
 
