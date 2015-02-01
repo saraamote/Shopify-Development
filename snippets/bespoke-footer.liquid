@@ -1,0 +1,51 @@
+<footer role="contentinfo">
+
+  <div id="about" class="about">
+
+    {{ pages.about.content }}
+
+  </div>
+
+  <div class="links">
+
+    {% for link in linklists.footer.links %}
+
+    <a href="{{ link.url }}">{{ link.title }}</a>
+
+    {% endfor %}
+
+  </div>
+
+  <div class="newsletter">
+
+    {% include 'newsletter-form' %}
+
+  </div>
+
+
+  <p class="text-center">
+
+    <a href="http://shopify.com/timber">
+
+      Timber Theme Framework
+
+    </a>
+
+    by
+
+    <a href="http://www.shopify.com?ref=Timber" title="Shopify.com">
+
+      Shopify
+
+    </a>
+
+    <small>
+
+      {{ powered_by_link }}
+
+    </small>
+
+  </p>
+
+</footer>
+

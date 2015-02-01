@@ -78,33 +78,15 @@
 
             {% for variant in product.variants %}
 
-            {% if variant.available %}
+            <option selected="selected" value="{{ variant.id }}">
 
-            <option {% if variant == product.selected_or_first_available_variant %} selected="selected" {% endif %} value="{{ variant.id }}">
-
-              {{ variant.title }} - {{ variant.price | money_with_currency }}
+              {{ variant.title }}
 
             </option>
-
-            {% else %}
-
-            <option disabled="disabled">
-
-              {{ variant.title }} - {{ 'products.product.sold_out' | t }}
-
-            </option>
-
-            {% endif %}
 
             {% endfor %}
 
           </select>
-
-          <span id="ProductPrice" class="h2{% if product.compare_at_price > product.price %} on-sale{% endif %}" itemprop="price">
-
-            {{ product.price | money }}
-
-          </span>
 
           <button type="submit" name="add" id="AddToCart">
 
@@ -143,6 +125,8 @@
 {% endfor %}
 
 <div class="designer-bio">
+
+  <h2>About the {{ collection.title }} Collection</h2>
 
   {{ collection.description }}
 

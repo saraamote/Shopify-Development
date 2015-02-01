@@ -6,12 +6,12 @@ global
 
 body {
 
-  font: 100 10px 'Proxima Nova Condensed', sans-serif;
+  font: 100 0 'p22-underground', sans-serif;
   letter-spacing: 1px;
-  background: #efefef;
+  background: #000;
   text-align: center;
   height: 100%;
-  color: #333;
+  color: #fff;
   margin: 0;
 
 }
@@ -19,16 +19,35 @@ body {
 .main-content,
 .wrapper,
 ul,
-ol {
+ol,
+h1,
+h2,
+h3 {
 
   padding: 0;
   margin: 0;
 
 }
 
-/*
+main {
+
+  padding: 60px 0 0 0;
+
+}
+
+a {
+
+  text-decoration: none;
+
+}
+
+
+
+/**********
+
 header
-*/
+
+***********/
 
 .bespoke-top-navigation {
 
@@ -37,6 +56,7 @@ header
   margin: auto;
   z-index: 100;
   padding: 0;
+  height: 0;
   right: 0;
   left: 0;
 
@@ -51,30 +71,134 @@ header
 
 }
 
-.bespoke-top-navigation ul li a,
-.bespoke-top-navigation .cart a {
+.bespoke-top-navigation ul li a {
 
+  font-family: 'p22-underground',sans-serif;
+  text-transform: uppercase;
+  vertical-align: text-bottom;
+  text-decoration: none;
+  font-style: normal;
+  line-height: 50px;
+  font-weight: 400;
+  font-size: 12px;
+  padding: 0 20px;
   color: #fff;
 
 }
 
-/* about link */
+/* about and cart links */
 
-.bespoke-top-navigation ul:first-child li:first-child {
+.bespoke-top-navigation ul:first-child li:first-child a,
+.bespoke-top-navigation .cart a {
 
-  position: absolute;
-  left: 15px;
-  top: 10px;
+  font: 300 14px/1.5 'garamond-premier-pro-display', serif;
+  text-decoration: none;
+  text-transform: none;
+  font-style: italic;
+  color: #fff;
 
 }
 
-/* cart link */
-
+.bespoke-top-navigation ul:first-child li:first-child,
 .bespoke-top-navigation .cart {
 
   position: absolute;
-  right: 15px;
-  top: 10px;
+  padding: 0;
+  top: 15px;
+
+}
+
+.bespoke-top-navigation ul:first-child li:first-child {
+
+  left: 20px;
+
+}
+
+.bespoke-top-navigation .cart {
+
+  right: 20px;
+
+}
+
+
+/**********
+
+footer
+
+***********/
+
+footer {
+
+  background: #fff;
+  padding: 2.5%;
+  font-size: 0;
+
+}
+
+footer .newsletter,
+footer .about,
+footer .links {
+
+  text-align: center;
+  display: block;
+  font-size: 0;
+  color: #000;
+
+}
+
+footer .about {
+
+  font: 300 22px/1.5 'garamond-premier-pro-display', serif;
+  font-style: normal;
+  padding: 20px;
+
+}
+
+footer .links a {
+
+  font-family: "p22-underground",sans-serif;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  padding: 20px;
+  color: #000;
+
+}
+
+
+/**********
+
+index
+
+**********/
+
+.featured {
+
+  background: #efefef;
+
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: flex;
+
+  -webkit-justify-content: center;
+  -webkit-align-content: center;
+  -webkit-align-items: center;
+
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  min-height: 80vh;
+
+}
+
+.featured img {
+
+  height: 80vw;
+  max-height: 75vh;
 
 }
 
@@ -83,6 +207,33 @@ header
 collection page
 
 ***********/
+
+/* group */
+
+.bespoke-cl {
+
+  display: inline-block;
+  position: relative;
+  width: 50%;
+
+}
+
+.bespoke-cl h2 {
+
+  font: 100 22px/3 'garamond-premier-pro-display', serif;
+  background: #efefef;
+  font-style: italic;
+  color: #000;
+
+}
+
+.bespoke-cl img {
+
+  width: 100%;
+
+}
+
+/* individual */
 
 .product {
 
@@ -108,19 +259,26 @@ product form
 }
 
 /*
-inquire, price, purchse
+inquire, price, purch
 */
+
+.product-drawer-inquire a {
+
+  color: #000;
+
+}
 
 .product-drawer-purchase,
 .product-drawer-inquire,
 .product-drawer-price {
 
-  font: 100 15px/1.5em "Proxima Nova Condensed", "Avenir Next Condensed", sans-serif;
+  font: 500 15px/1.5em 'p22-underground', sans-serif;
   text-transform: uppercase;
   display: inline-block;
   text-align: center;
   padding: 2% 0;
-  width: 33.33%;
+  width: 100%;
+  color: #000;
 
 }
 
@@ -136,7 +294,7 @@ product description
 
 .product-drawer {
 
-  font: 300 15px/22px 'Proxima Nova Condensed', 'Avenir Next Condensed', sans-serif;
+  font: 100 15px/22px 'p22-underground', sans-serif;
   font-variant: normal;
   background: #efefef;
   font-style: normal;
@@ -147,17 +305,21 @@ product description
 
 .product-drawer h2 {
 
-  font: 100 23px/1.5 'AW Conqueror Didot', 'Didot', serif;
+  font: 100 23px/1.5 'garamond-premier-pro-display', serif;
   text-transform: uppercase;
   padding-bottom: .5em;
   padding-top: 3em;
   margin: 0 6%;
+  color: #000;
 
 }
 
 .product-drawer p {
 
-  margin: 3% 6%;
+  font: 300 18px/1.5 'garamond-premier-pro-display', serif;
+  padding: 30px 15px;
+  font-style: normal;
+  color: #000;
 
 }
 
@@ -165,11 +327,23 @@ product description
 
 .designer-bio {
 
-  font: 300 15px/22px 'Proxima Nova Condensed', 'Avenir Next Condensed', sans-serif;
+  font: 300 18px/1.5 'garamond-premier-pro-display', serif;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
   font-variant: normal;
-  font-style: normal;
+  padding: 3% 6% 9% 3%;
+  font-style: italic;
   text-align: center;
-  margin: 3% 6%;
+  background: #000;
+  color: #fff;
+
+}
+
+.designer-bio h2 {
+
+  font: 400 18px 'p22-underground',sans-serif;
+  text-transform: uppercase;
+  margin: 2.5% 2.5% 5% 2.5%;
 
 }
 
@@ -190,24 +364,11 @@ product description
 }
 
 
-
-***********//**********
-
-
-***********/
-
-
-
 /**********
 
 collection page styles
 
 ***********/
-
-
-/*
-product wrapper
-*/
 
 
 /*
@@ -508,6 +669,29 @@ image location
 
 /**********
 
+pages
+
+**********/
+
+.rte {
+
+  font: 300 22px/1.5 'garamond-premier-pro-display', serif;
+  padding: 60px 2.5% 5% 2.5%;
+  color: #efefef;
+
+}
+
+.rte a {
+
+  text-decoration: none;
+  color: #efefef;
+
+}
+
+
+
+/**********
+
 cart
 
 **********/
@@ -520,12 +704,13 @@ cart
 }
 
 
-
 /**********
 
 media queries
 
 **********/
+
+
 
 /* collection page - images half screen */
 
@@ -534,6 +719,32 @@ media queries
   .product-images img {
 
     width: 50vw;
+
+  }
+
+}
+
+/* collection page - grid 6 wide */
+
+@media (min-width: 1080px) {
+
+  .collection-grid img {
+
+    width: 16.66%;
+
+  }
+
+}
+
+/* slide out product drawer */
+
+  @media (min-width: 600px) {
+
+  .product-drawer-purchase,
+  .product-drawer-inquire,
+  .product-drawer-price {
+
+    width: 33.33%;
 
   }
 
